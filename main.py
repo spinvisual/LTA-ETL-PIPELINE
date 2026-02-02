@@ -71,3 +71,13 @@ def run_pipeline():
 if __name__ == "__main__":
     # Only run the code if I click "Play" on this specific file.
     run_pipeline()
+
+# --- This is the "Doorbell" for Google Cloud ---
+@functions_framework.http
+def cloud_entry_point(request):
+    """
+    This function is what Google Cloud Functions will look for.
+    The 'request' parameter is mandatory for web-triggered functions.
+    """
+    run_pipeline()
+    return "Pipeline finished successfully!", 200
